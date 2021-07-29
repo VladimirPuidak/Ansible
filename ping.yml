@@ -1,0 +1,13 @@
+---
+- name: Ping machines
+  hosts: "{{ hostname }}"
+  become: no
+
+  tasks:
+  - name: Ping linux machines
+    ping:
+    when: ansible_os_family == "Debian"
+
+  - name: Ping windows machines
+    win_ping:
+    when: ansible_os_family == "Windows"
